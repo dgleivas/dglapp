@@ -39,8 +39,9 @@ app.get('/', (req, res) => {
 
 
 //External Router
-app.use("/",router_user)
 
+//Rota para Raiz
+app.use("/",router_user)
 
 app.post('/add', (req, res) => {
 

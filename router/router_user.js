@@ -2,8 +2,23 @@
 const express = require("express")
 const router = express.Router()
 
-router.get("/",(req, res) =>{
-    res.render("teste")
+
+//Rota de Login e Cadastro
+router.get("/", (req, res) => {
+    res.render("home")
 })
+
+
+//Rota Login
+router.post("/login", (req, res) => {
+    res.render("home")
+})
+
+//Rota de Login e Cadastro
+router.post("/adduser", (req, res) => {
+    res.render("home")
+})
+
+
 
 module.exports = router

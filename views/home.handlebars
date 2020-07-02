@@ -1,53 +1,55 @@
-        <form method="post" id="fLogin" action="mailto:contato@blabla.com.br" oninput="">
-            <fieldset id="login">
-                <legend>Login</legend>
-                <table id="tabela_login">
-                    <tr>
-                        <td><label for="ilEmail">em@il:</label></td>
-                        <td><input type="text" name="nlEmail" id="ilEmail" maxlength="50" placeholder="Email..."></td>
-                    </tr>
-                    <tr>
-                        <td><label for="ilPass">Password:</label></td>
-                        <td><input type="password" name="nlPass" id="ilPass" maxlength="10" placeholder="Senha..."></td>
-                    </tr>
-                </table>
-                <input type="image" src="/images/img_botao_enviar.png" name="bLogin" alt="">
+<p>
+<form method="post" id="fLogin" action="/login" oninput="">
+    <fieldset id="login">
+        <legend>Login</legend>
+        <table id="tabela_login">
+            <tr>
+                <td><label for="ilEmail">em@il:</label></td>
+                <td><input type="text" name="nlEmail" id="ilEmail" maxlength="50" placeholder="Email..."></td>
+            </tr>
+            <tr>
+                <td><label for="ilPass">Password:</label></td>
+                <td><input type="password" name="nlPass" id="ilPass" maxlength="10" placeholder="Senha..."></td>
+            </tr>
+        </table>
+        <input type="image" src="/images/img_botao_enviar.png" name="bLogin" alt="">
 
-            </fieldset>
-            <span>Esqueci minha senha</span>
-        </form>
-        </p>
-        <p>
-        <form method="post" id="fCadastro" action="/add" oninput="">
-            <fieldset id="cadastro">
-                <legend>Cadastre-se</legend>
-                <table id="tabela_cadastro">
-                    <tr>
-                        <td><label for="iNome">Nome:</label></td>
-                        <td><input type="text" name="nNome" id="iNome" maxlength="50" placeholder="Nome"></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="iSobrenome">Sobrenome :</label></td>
-                        <td><input type="text" name="nSobrenome" id="iSobrenome" maxlength="50" placeholder="Sobrenome">
-                        </td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="icEmail">em@il:</label></td>
-                        <td><input type="text" name="ncEmail" id="icEmail" maxlength="50" placeholder="Email..."></td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="icPass">Password:</label></td>
-                        <td><input type="password" name="ncPass" id="icPass" maxlength="10" placeholder="Senha..."></td>
-                    </tr>
-                    <tr>
-                        <td><label for="icRePass">Re-Password:</label></td>
-                        <td><input type="password" name="ncRePass" id="icRePass" maxlength="10"
-                                placeholder="Confirme a Senha..."></td>
-                    </tr>
-                </table>
-                <input type="image" src="/images/img_botao_cadastrar.png" name="bCadastrar" alt="">
-            </fieldset>
-        </form>
+    </fieldset>
+    <span>Esqueci minha senha</span>
+</form>
+</p>
+<p>
+<form method="post" id="fCadastro" action="/adduser" oninput="">
+    <fieldset id="cadastro">
+        <legend>Cadastre-se</legend>
+        <table id="tabela_cadastro">
+            <tr>
+                <td><label for="iNome">Nome:</label></td>
+                <td><input type="text" name="nNome" id="iNome" maxlength="50" placeholder="Nome"></td>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="iSobrenome">Sobrenome :</label></td>
+                <td><input type="text" name="nSobrenome" id="iSobrenome" maxlength="50" placeholder="Sobrenome">
+                </td>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="icEmail">em@il:</label></td>
+                <td><input type="text" name="ncEmail" id="icEmail" maxlength="50" placeholder="Email..."></td>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="icPass">Password:</label></td>
+                <td><input type="password" name="ncPass" id="icPass" maxlength="10" placeholder="Senha..."></td>
+            </tr>
+            <tr>
+                <td><label for="icRePass">Re-Password:</label></td>
+                <td><input type="password" name="ncRePass" id="icRePass" maxlength="10"
+                        placeholder="Confirme a Senha..."></td>
+            </tr>
+        </table>
+        <input type="image" src="/images/img_botao_cadastrar.png" name="bCadastrar" alt="">
+    </fieldset>
+</form>
+</p>
