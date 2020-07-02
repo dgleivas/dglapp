@@ -1,0 +1,12 @@
+{
+  "name": "dglapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "Denis G. Leivas",
+  "license": "ISC"
+}
