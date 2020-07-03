@@ -1,55 +1,59 @@
-<p>
-<form method="post" id="fLogin" action="/login" oninput="">
-    <fieldset id="login">
-        <legend>Login</legend>
-        <table id="tabela_login">
-            <tr>
-                <td><label for="ilEmail">em@il:</label></td>
-                <td><input type="text" name="nlEmail" id="ilEmail" maxlength="50" placeholder="Email..."></td>
-            </tr>
-            <tr>
-                <td><label for="ilPass">Password:</label></td>
-                <td><input type="password" name="nlPass" id="ilPass" maxlength="10" placeholder="Senha..."></td>
-            </tr>
-        </table>
-        <input type="image" src="/images/img_botao_enviar.png" name="bLogin" alt="">
+<div>
+    <p>
+    <form method="post" id="fLogin" action="/login" oninput="">
+        <div class="form-group row">
+            <label for="ilEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="ilEmail" name="nlEmail" placeholder="email@example.com">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ilPass" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="ilPass" name="nlPass" placeholder="Senha">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </form>
+    </p>
 
-    </fieldset>
-    <span>Esqueci minha senha</span>
-</form>
-</p>
-<p>
-<form method="post" id="fCadastro" action="/adduser" oninput="">
-    <fieldset id="cadastro">
-        <legend>Cadastre-se</legend>
-        <table id="tabela_cadastro">
-            <tr>
-                <td><label for="iNome">Nome:</label></td>
-                <td><input type="text" name="nNome" id="iNome" maxlength="50" placeholder="Nome"></td>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="iSobrenome">Sobrenome :</label></td>
-                <td><input type="text" name="nSobrenome" id="iSobrenome" maxlength="50" placeholder="Sobrenome">
-                </td>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="icEmail">em@il:</label></td>
-                <td><input type="text" name="ncEmail" id="icEmail" maxlength="50" placeholder="Email..."></td>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="icPass">Password:</label></td>
-                <td><input type="password" name="ncPass" id="icPass" maxlength="10" placeholder="Senha..."></td>
-            </tr>
-            <tr>
-                <td><label for="icRePass">Re-Password:</label></td>
-                <td><input type="password" name="ncRePass" id="icRePass" maxlength="10"
-                        placeholder="Confirme a Senha..."></td>
-            </tr>
-        </table>
-        <input type="image" src="/images/img_botao_cadastrar.png" name="bCadastrar" alt="">
-    </fieldset>
-</form>
-</p>
+    <p>
+    <form method="post" id="fCadastro" action="/adduser" oninput="">
+
+
+        <div class="form-group row">
+            <label for="iNome" class="col-sm-2 col-form-label">Nome</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="iNome" name="nNome" placeholder="Nome">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="iSobrenome" class="col-sm-2 col-form-label">Sobrenome</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="iSobrenome" name="nSobrenome" placeholder="Sobrenome">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="icEmail" class="col-sm-2 col-form-label">em@il</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="icEmail" name="ncEmail" placeholder="email@example.com">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="icPass" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="icPass" name="ncPass" placeholder="Senha...">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+    </form>
+    </p>
+</div>

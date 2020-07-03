@@ -9,7 +9,8 @@ const usuarios = db.sequelize.define('usuarios', {
         type: db.Sequelize.STRING,
     },
     email: {
-        type: db.Sequelize.STRING
+        type: db.Sequelize.STRING,
+        unique: true
     },
     password: {
         type: db.Sequelize.STRING
