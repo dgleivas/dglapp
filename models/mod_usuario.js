@@ -4,16 +4,19 @@ const db = require("./db")
 const usuarios = db.sequelize.define('usuarios', {
     firstname: {
         type: db.Sequelize.STRING,
+        allowNull: false
     },
     lastname: {
-        type: db.Sequelize.STRING,
+        type: db.Sequelize.STRING
     },
     email: {
         type: db.Sequelize.STRING,
-        unique: true
+        unique: true,
+        allowNull: false
     },
     password: {
-        type: db.Sequelize.STRING
+        type: db.Sequelize.STRING,
+        allowNull: false
     },
     descricao: {
         type: db.Sequelize.JSONB
