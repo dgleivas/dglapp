@@ -1,59 +1,92 @@
 <div>
-    <p>
-    <form method="post" id="fLogin" action="/login" oninput="">
-        <div class="form-group row">
-            <label for="ilEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="ilEmail" name="nlEmail" placeholder="email@example.com">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="ilPass" class="col-sm-2 col-form-label">Senha</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="ilPass" name="nlPass" placeholder="Senha">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </div>
-    </form>
-    </p>
+    {{#each formlogin_erro}}
+    <div class="alert alert-danger mx-auto p-1 my-1" role="alert">{{texto}}</div>
+    {{/each}}
 
-    <p>
-    <form method="post" id="fCadastro" action="/adduser" oninput="">
-
-
-        <div class="form-group row">
-            <label for="iNome" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="iNome" name="nNome" placeholder="Nome">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="iSobrenome" class="col-sm-2 col-form-label">Sobrenome</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="iSobrenome" name="nSobrenome" placeholder="Sobrenome">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="icEmail" class="col-sm-2 col-form-label">em@il</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="icEmail" name="ncEmail" placeholder="email@example.com">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="icPass" class="col-sm-2 col-form-label">Senha</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="icPass" name="ncPass" placeholder="Senha...">
-            </div>
-
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <p id="form_login">
+    <form method="post" id="fLogin" action="/login">
+        <div class="card bg-light mb-3 mx-auto " style="max-width: 500px;">
+            <div class="card-header">Login</div>
+            <div class="card-body px-4">
+                <div class="form-group row mt-1">
+                    <label for="ilEmail" class="col-sm-3 col-form-label col-form-label-sm">em@il</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control form-control-sm" id="ilEmail" name="nlEmail"
+                            placeholder="email@example.com">
+                    </div>
                 </div>
+                <div class="form-group row mt-1">
+                    <label for="ilPass" class="col-sm-3 col-form-label col-form-label-sm">Senha</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control form-control-sm" id="ilPass" name="nlPass"
+                            placeholder="Senha">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
     </form>
     </p>
+
+
+
+    <p id="form_cadastro">
+        {{#each formadd_erro}}
+    <div class="alert alert-danger mx-auto p-1 my-1" style="max-width: 500px;" role="alert">{{texto}}</div>
+    {{/each}}
+
+    {{#each formadd_success}}
+    <div class="alert alert-success mx-auto p-1 my-1" style="max-width: 500px;" role="alert">{{texto}}</div>
+    {{/each}}
+
+    <div class="card bg-light mb-3 mx-auto" style="max-width: 500px;">
+        <div class="card-header">Cadastre-se</div>
+        <div class="card-body px-4">
+            <form method="post" id="fCadastro" action="/adduser">
+                <div class="form-group row mt-1">
+                    <label for="iNome" class="col-sm-3 col-form-label col-form-label-sm">Nome</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="iNome" name="nNome"
+                            placeholder="Nome">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="iSobrenome" class="col-sm-3 col-form-label col-form-label-sm">Sobrenome</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm" id="iSobrenome" name="nSobrenome"
+                            placeholder="Sobrenome">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="icEmail" class="col-sm-3 col-form-label col-form-label-sm">em@il</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control form-control-sm" id="icEmail" name="ncEmail"
+                            placeholder="email@example.com">
+                    </div>
+                </div>
+                <div class="form-group row mt-1">
+                    <label for="icPass" class="col-sm-3 col-form-label col-form-label-sm">Senha</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control form-control-sm" id="icPass" name="ncPass"
+                            placeholder="Senha...">
+                    </div>
+
+                    <div class="form-group row mt-1">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </p>
+
 </div>

@@ -18,39 +18,60 @@ router.post("/login", (req, res) => {
 //Rota de Login e Cadastro
 router.post("/adduser", (req, res) => {
 
+    var formadd_erro = []
 
-    usuarios.count({
-        where: {
-            email: req.body.ncEmail
-        }
-    }).then((Results) => {
-        //trabalhar a variavel results aqui para inserir um novo cadastro se ela retoranr vazia
-        //const results = JSON.stringify(Results)
-        if (!Results) {
-            usuarios.create({
-                firstname: req.body.nNome,
-                lastname:  req.body.nSobrenome,
-                email:  req.body.ncEmail,
-                password:  req.body.ncPass
-            }).then(function () {
-                res.send('Cadastro Feito com Sucesso')
-            }).catch(function (err) {
-                res.send(`Erro: ${err}`)
-            })
-        } else {
-            res.send("Ja existente")
-        }
+    if (!req.body.nNome || typeof req.body.nNome == undefined || req.body.nNome == null) {
+        formadd_erro.push({ texto: "Nome inválido!" })
+    }
+    if (!req.body.nSobrenome || typeof req.body.nSobrenome == undefined || req.body.nSobrenome == null) {
+        formadd_erro.push({ texto: "Sobrenome inválido!" })
+    }
+    if (!req.body.ncEmail || typeof req.body.ncEmail == undefined || req.body.ncEmail == null) {
+        formadd_erro.push({ texto: "Email inválido!" })
+    }
+    if (!req.body.ncPass || typeof req.body.ncPass == undefined || req.body.ncPass == null) {
+        formadd_erro.push({ texto: "Senha inválido!" })
+    }
+    if (formadd_erro.length > 0) {
+        res.render("home", { formadd_erro: formadd_erro })
+    } else {
+        usuarios.count({
+            where: { 
+                email: req.body.ncEmail
+            }
+        }).then((Results) => {
+            if (!Results) {
+                //Cadastra usuario novo do BD
+                usuarios.create({
+                    firstname: req.body.nNome,
+                    lastname: req.body.nSobrenome,
+                    email: req.body.ncEmail,
+                    password: req.body.ncPass
+                }).then(() => {
+                    req.flash("success_msg","Cadastro feito com Sucesso! Verifique seu email.")
+                    res.redirect("/")
+                }).catch((err) => {
+                    req.flash("error_msg","Erro no cadastro, tente novamente.")
+                    res.redirect("/")
+                })
+            } else {
+                //Usuario Ja existente
+                req.flash("error_msg","Email já cadastrado.")
+                res.redirect("/")
+            }
 
 
-        /* res.render('cadastro', {
-             result: results,
-             email: req.body.ncEmail
-         })
-         */
-    }).catch((err) => {
-        res.send(`Erro: ${err}`)
-    })
+            /* res.render('cadastro', {
+                 result: results,
+                 email: req.body.ncEmail
+             })
+             */
+        }).catch((err) => {
+            res.send(`Erro: ${err}`)
+        })
 
+
+    }
 })
 
 

@@ -14,6 +14,10 @@ const usuarios = db.sequelize.define('usuarios', {
         unique: true,
         allowNull: false
     },
+    checkemail: {
+        type: db.Sequelize.BOOLEAN,
+        defaultValue: false
+    },
     password: {
         type: db.Sequelize.STRING,
         allowNull: false
