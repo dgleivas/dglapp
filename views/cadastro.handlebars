@@ -1,10 +1,10 @@
 
   <p id="resultado"></p>
    <script>
-       const test = {{{toJSON result}}}
+       const cadastro = {{{toJSON result}}}
        const email = '{{{email}}}'
-       if (test.length >0){
-           document.querySelector("p#resultado").innerHTML = `Usuario ${test[0].email} ja existente`
+       if (cadastro.length >0){
+           document.querySelector("p#resultado").innerHTML = `Usuario ${cadastro[0].email} ja existente`
        }else{
            document.querySelector("p#resultado").innerHTML = `Usuario ${email} cadastrado com sucesso`
        }

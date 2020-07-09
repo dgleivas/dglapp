@@ -2,6 +2,7 @@
 const express = require("express")
 const router = express.Router()
 const usuarios = require("../models/mod_usuario")
+const bcrypt = require("bcryptjs")
 
 
 //Rota de Login e Cadastro
@@ -14,6 +15,19 @@ router.get("/", (req, res) => {
 router.post("/login", (req, res) => {
     res.send("Rota Login")
 })
+
+//Rota ADM Lista de Cadatros
+router.get("/listausuarios", (req, res) => {
+    usuarios.findAll({
+        attributes: ['firstname', 'lastname', 'email', 'password']
+    }).then((Results) => {
+        res.render("listauser", { resultados: Results })
+    }).catch((err) => {
+        req.flash("error_msg", `Erro: ${err}`)
+        res.redirect("/")
+    })
+})
+
 
 //Rota de Login e Cadastro
 router.post("/adduser", (req, res) => {
@@ -36,27 +50,40 @@ router.post("/adduser", (req, res) => {
         res.render("home", { formadd_erro: formadd_erro })
     } else {
         usuarios.count({
-            where: { 
+            where: {
                 email: req.body.ncEmail
             }
         }).then((Results) => {
             if (!Results) {
-                //Cadastra usuario novo do BD
-                usuarios.create({
-                    firstname: req.body.nNome,
-                    lastname: req.body.nSobrenome,
-                    email: req.body.ncEmail,
-                    password: req.body.ncPass
-                }).then(() => {
-                    req.flash("success_msg","Cadastro feito com Sucesso! Verifique seu email.")
-                    res.redirect("/")
-                }).catch((err) => {
-                    req.flash("error_msg","Erro no cadastro, tente novamente.")
-                    res.redirect("/")
+                //Gera o Salt na var: salt
+                bcrypt.genSalt(10, (erro, salt) => {
+                    // Transforma a Senha em Hash na var: hash
+                    bcrypt.hash(req.body.ncPass, salt, (erro, hash) => {
+                        if (erro) {
+                            req.flash("error_msg", "Erro no cadastro, tente novamente.")
+                            res.redirect("/")
+                        } else {
+                            //Cadastra usuario novo do BD
+                            usuarios.create({
+                                firstname: req.body.nNome,
+                                lastname: req.body.nSobrenome,
+                                email: req.body.ncEmail,
+                                password: hash
+                            }).then(() => {
+                                req.flash("success_msg", "Cadastro feito com Sucesso! Verifique seu email.")
+                                res.redirect("/")
+                            }).catch((err) => {
+                                req.flash("error_msg", "Erro no cadastro, tente novamente.")
+                                res.redirect("/")
+                            })
+                        }
+                    })
                 })
+
+
             } else {
                 //Usuario Ja existente
-                req.flash("error_msg","Email já cadastrado.")
+                req.flash("error_msg", "Email já cadastrado.")
                 res.redirect("/")
             }
 

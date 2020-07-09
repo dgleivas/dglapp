@@ -1,0 +1,86 @@
+<p class="h1">Lista de Uruários</p>
+
+<table class="table table-hover" id="lista_de_users">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">em@il</th>
+            <th scope="col">Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Itens criados por javascript-->
+    </tbody>
+</table>
+
+<template id="productrow">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</template>
+
+<script>
+    const cadastro = {{{ toJSON resultados }}}
+    const corpo = document.querySelector("tbody")
+    
+    //Catch Template
+    var tbody = document.querySelector("tbody");
+    var template = document.querySelector('#productrow');
+
+    // Clone the new row and insert it into the table
+    var clone 
+    var td
+
+    if (cadastro.length > 0) {
+
+        for (let i = 0; i < cadastro.length; i++) {
+            clone = template.content.cloneNode(true);
+            td = clone.querySelectorAll("td");
+            td[0].textContent = cadastro[i].firstname;
+            td[1].textContent = cadastro[i].lastname;
+            td[2].textContent = cadastro[i].email;
+            td[3].textContent = cadastro[i].password;
+
+            tbody.appendChild(clone);
+
+        }
+
+        /*  Criando linhas com java script     
+            for (let i = 0; i < cadastro.length; i++) {
+                  let linha = document.createElement("tr")
+                  let cell_first = document.createElement("td")
+                  let cell_last = document.createElement("td")
+                  let cell_email = document.createElement("td")
+                  let cell_pass = document.createElement("td")
+                  let txt_first = document.createTextNode(cadastro[i].firstname)
+                  let txt_last = document.createTextNode(cadastro[i].lastname)
+                  let txt_email = document.createTextNode(cadastro[i].email)
+                  let txt_pass = document.createTextNode(cadastro[i].password)
+      
+                  cell_first.appendChild(txt_first)
+                  cell_last.appendChild(txt_last)
+                  cell_email.appendChild(txt_email)
+                  cell_pass.appendChild(txt_pass)
+                  linha.appendChild(cell_first)
+                  linha.appendChild(cell_last)
+                  linha.appendChild(cell_email)
+                  linha.appendChild(cell_pass)
+                  corpo.appendChild(linha)
+              } 
+              */
+    } else {
+        const linha = document.createElement("tr")
+        const cell_none = document.createElement("td")
+        cell_none.colSpan = "3"
+        cell_none.className = "text-center"
+        const txt_none = document.createTextNode("Nenhum usuário cadastrado!")
+        cell_none.appendChild(txt_none)
+        linha.appendChild(cell_none)
+        corpo.appendChild(linha)
+    }
+    console.log(cadastro)
+</script>
