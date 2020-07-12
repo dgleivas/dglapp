@@ -3,6 +3,7 @@
 <table class="table table-hover" id="lista_de_users">
     <thead class="table-dark">
         <tr>
+            <th scope="col">id</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">em@il</th>
@@ -16,6 +17,7 @@
 
 <template id="productrow">
     <tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -40,10 +42,11 @@
         for (let i = 0; i < cadastro.length; i++) {
             clone = template.content.cloneNode(true);
             td = clone.querySelectorAll("td");
-            td[0].textContent = cadastro[i].firstname;
-            td[1].textContent = cadastro[i].lastname;
-            td[2].textContent = cadastro[i].email;
-            td[3].textContent = cadastro[i].password;
+            td[0].textContent = cadastro[i].id;
+            td[1].textContent = cadastro[i].firstname;
+            td[2].textContent = cadastro[i].lastname;
+            td[3].textContent = cadastro[i].email;
+            td[4].textContent = cadastro[i].password;
 
             tbody.appendChild(clone);
 
@@ -75,7 +78,7 @@
     } else {
         const linha = document.createElement("tr")
         const cell_none = document.createElement("td")
-        cell_none.colSpan = "3"
+        cell_none.colSpan = "5"
         cell_none.className = "text-center"
         const txt_none = document.createTextNode("Nenhum usuário cadastrado!")
         cell_none.appendChild(txt_none)

@@ -6,6 +6,8 @@ const handlebars = require("express-handlebars") //link entre o backend com o fr
 const bodyparser = require("body-parser") //utilizar uma variavel do frontend para o backend
 const path = require("path")
 const router_user = require("./router/router_user")
+const passport = require("passport")
+require ("./config/auth")(passport)
 
 // Config
     //Express
@@ -17,12 +19,16 @@ const router_user = require("./router/router_user")
             saveUninitialized: true
 
         }))
-        app.use(flash())
+    //Configurando o Passport
+        app.use(passport.initialize())
+        app.use(passport.session())
 
+        app.use(flash())
     // Middleware
         app.use((req, res, next) => {
             res.locals.success_msg = req.flash("success_msg")
             res.locals.error_msg = req.flash("error_msg")
+            res.locals.error = req.flash("error")
             next()
         })
 

@@ -1,7 +1,7 @@
 const db = require("./db")
 
 // Model para Usuarios 
-const usuarios = db.sequelize.define('usuarios', {
+const Usuario = db.sequelize.define('usuarios', {
     firstname: {
         type: db.Sequelize.STRING,
         allowNull: false
@@ -27,7 +27,7 @@ const usuarios = db.sequelize.define('usuarios', {
     }
 })
 
-module.exports = usuarios
+module.exports = Usuario
 
 
 

@@ -1,9 +1,9 @@
 //Inicialização dos modulos
 const express = require("express")
 const router = express.Router()
-const usuarios = require("../models/mod_usuario")
+const Usuario = require("../models/mod_usuario")
 const bcrypt = require("bcryptjs")
-
+const passport = require("passport")
 
 //Rota de Login e Cadastro
 router.get("/", (req, res) => {
@@ -12,15 +12,17 @@ router.get("/", (req, res) => {
 
 
 //Rota Login
-router.post("/login", (req, res) => {
-    res.send("Rota Login")
+router.post("/login", (req, res,next) => {
+    passport.authenticate("local", {
+        successRedirect: "/listausuarios",
+        failureRedirect: "/",
+        failureFlash: true
+    })(req, res, next)
 })
 
 //Rota ADM Lista de Cadatros
 router.get("/listausuarios", (req, res) => {
-    usuarios.findAll({
-        attributes: ['firstname', 'lastname', 'email', 'password']
-    }).then((Results) => {
+    Usuario.findAll().then((Results) => {
         res.render("listauser", { resultados: Results })
     }).catch((err) => {
         req.flash("error_msg", `Erro: ${err}`)
@@ -49,7 +51,7 @@ router.post("/adduser", (req, res) => {
     if (formadd_erro.length > 0) {
         res.render("home", { formadd_erro: formadd_erro })
     } else {
-        usuarios.count({
+        Usuario.count({
             where: {
                 email: req.body.ncEmail
             }
@@ -64,7 +66,7 @@ router.post("/adduser", (req, res) => {
                             res.redirect("/")
                         } else {
                             //Cadastra usuario novo do BD
-                            usuarios.create({
+                            Usuario.create({
                                 firstname: req.body.nNome,
                                 lastname: req.body.nSobrenome,
                                 email: req.body.ncEmail,
